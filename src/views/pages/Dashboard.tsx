@@ -1,3 +1,5 @@
+/* material-ui dashboard template  */
+
 import React from 'react'
 import DashboardContent from '~/views/components/Dashboard'
 
