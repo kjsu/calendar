@@ -32,6 +32,28 @@ const ToastUICalendar: React.FC<Props> = ({
     }
     calendar.current = new Calendar('#calendar', options) // tui 캘린더 객체 생성
 
+    /* sample calendar info */
+    const calendarInfo = [
+      {
+        id: '1',
+        name: 'My Calendar',
+        color: '#ffffff',
+        bgColor: '#9e5fff',
+        dragBgColor: '#9e5fff',
+        borderColor: '#9e5fff'
+      },
+      {
+        id: '2',
+        name: 'Company',
+        color: '#00a9ff',
+        bgColor: '#00a9ff',
+        dragBgColor: '#00a9ff',
+        borderColor: '#00a9ff'
+      },
+    ]
+    calendar.current?.setCalendars(calendarInfo)
+    /* sample calendar info */
+
     const beforeCreateSchedule = (scheduleData: ISchedule) => {
       const schedule: Schedule = {
         startDate: (scheduleData.start as TZDate).toDate()?.toISOString(),
