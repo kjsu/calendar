@@ -36,16 +36,23 @@ const ToastUICalendar: React.FC<Props> = ({
     calendar.current = new Calendar('#calendar', options) // tui 캘린더 객체 생성
 
     const beforeCreateSchedule = (scheduleData: ISchedule) => {
-      // const schedule: Schedule = {
-      //   startDate: (scheduleData.start as TZDate).toDate()?.toISOString(),
-      //   endDate: (scheduleData.end as TZDate).toDate()?.toISOString(),
-      // }
-      // onCreateSchedule(convertToastUIScheduleToSchedule(schedule))
+      const schedule = {
+        calendarId: scheduleData.calendarId,
+        id: String(Math.random() * 100000000000000000),
+        title: scheduleData.title,
+        isAllDay: scheduleData.isAllDay,
+        start: scheduleData.start,
+        end: scheduleData.end,
+        category: scheduleData.isAllDay ? 'allday' : 'time',
+        location: scheduleData.location
+      };
+
+      calendar.current?.createSchedules([schedule]);
     }
 
     const beforeUpdateSchedule = (event: any) => {
       const { schedule, changes } = event
-      calendar.current?.updateSchedule(schedule.id, schedule.calendarId, changes) // 이 안에 뭐들어있는지 봐야함
+      calendar.current?.updateSchedule(schedule.id, schedule.calendarId, changes)
     }
 
     const beforeDeleteSchedule = (scheduleData: any) => {
@@ -102,7 +109,6 @@ const ToastUICalendar: React.FC<Props> = ({
     const calendarInfo: ICalendarInfo[] = []
     uniqueSchedules.forEach((schedule) => {
       calendarInfo.push({
-        // id: Math.floor(Math.random() * 100000).toString(),
         id: schedule.type,
         name: schedule.type,
         color: '#ffffff',

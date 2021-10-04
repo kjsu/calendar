@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import ajax from '~/utils/ajax'
 import { GetScheduleRequestParams, Schedule } from '~/interfaces/calendar'
-import { dummyScheduleCompany, } from './dummy'
+import { dummyScheduleCompany, dummySchedulePersonal } from './dummy'
 
 export const schedules = (request: GetScheduleRequestParams) => {
   // const result: AxiosResponse<Schedule[]> = await ajax.get(`/schedule?id=${request.id}`)
@@ -13,6 +13,7 @@ export const schedules = (request: GetScheduleRequestParams) => {
       result = dummyScheduleCompany
       break;
     case 'PERSONAL':
+      result = dummySchedulePersonal
       break;
   }
 

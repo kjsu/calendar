@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import calendarAction from '~/actions/calendarAction'
 import Calendar from '~/views/components/Calendar'
 import { schedulesAtom } from '~/recoil/calendarAtom'
 
 const Home: React.FC = () => {
   const [schedules, setSchedules] = useRecoilState(schedulesAtom)
-  const getSchedules = useRecoilValue(schedulesAtom)
 
   useEffect(() => {
-    const schedules = calendarAction.getSchedules({ type: 'COMPANY' })
+    const schedules = calendarAction.getSchedules({ type: 'PERSONAL' })
     setSchedules(schedules)
   }, [])
-
-  useEffect(() => {
-    const test = getSchedules
-    debugger
-  }, [schedules])
 
   return (
     <>
