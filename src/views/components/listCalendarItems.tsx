@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 
-export const plannerItems = (
+export const calendarItems = (
 	<div>
 		<ListItem button>
 			<ListItemIcon>
