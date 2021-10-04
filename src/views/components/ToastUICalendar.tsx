@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useRef, useEffect, ReactElement } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Calendar, { IOptions, ICalendarInfo, ISchedule, TZDate } from 'tui-calendar'
 import { ViewType, MoveType, DateRange, Schedule } from '~/interfaces/calendar'
 import { useRecoilValue } from 'recoil'
@@ -8,22 +8,9 @@ import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
 interface Props {
-  // schedules?: Schedule[]
-  // mode?: CalendarMode
-  // onChangeCalendarDateRange?: (range: DateRange) => void
-  onCreateSchedule?: (schedule: Schedule) => void
-  onUpdateSchedule?: (schedule: Schedule) => void
-  onDeleteSchedule?: (schedule: Schedule) => void
 }
 
-const ToastUICalendar: React.FC<Props> = ({
-  // schedules,
-  // mode,
-  // onChangeCalendarDateRange,
-  onCreateSchedule,
-  onUpdateSchedule,
-  onDeleteSchedule,
-}) => {
+const ToastUICalendar: React.FC<Props> = () => {
   const calendar = useRef<Calendar>()
   const schedules = useRecoilValue(schedulesAtom)
 
@@ -65,22 +52,13 @@ const ToastUICalendar: React.FC<Props> = ({
     calendar.current?.on('beforeDeleteSchedule', beforeDeleteSchedule)
   }
 
-  // event handler
   const createSchedules = (schedules: ISchedule[]) => {
     calendar.current?.clear()
     calendar.current?.createSchedules(schedules)
   }
 
-  const getCalendarDateRange = (): DateRange => {
-    return {
-      start: calendar.current?.getDateRangeStart().toDate().toISOString(),
-      end: calendar.current?.getDateRangeEnd().toDate().toISOString(),
-    }
-  }
-
   const move = (type: MoveType) => {
     calendar.current?.[type]()
-    // onChangeCalendarDateRange(getCalendarDateRange())
   }
 
   const changeView = () => {
@@ -89,7 +67,6 @@ const ToastUICalendar: React.FC<Props> = ({
     } else {
       calendar.current?.changeView(ViewType.WEEK, true)
     }
-    // onChangeCalendarDateRange(getCalendarDateRange())
   }
 
   const generateCalendarInfo = (schedules: Schedule[]) => {
