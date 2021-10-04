@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import sampleService from '~/services/sampleService' /* recoil sample용 임시 코드, 실제 구현은 action 사용 */
 import { useRecoilState } from 'recoil'
 import { sampleAtom } from '~/recoil/sampleAtom'
-import Planner from '~/views/components/Planner'
+import Calendar from '~/views/components/Calendar'
 
 const Home: React.FC = () => {
   const [sample, setSample] = useRecoilState(sampleAtom)
@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Planner></Planner>
+      <Calendar></Calendar>
     </>
   )
 }
