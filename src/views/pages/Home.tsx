@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react'
-import sampleService from '~/services/sampleService' /* recoil sample용 임시 코드, 실제 구현은 action 사용 */
-import { useRecoilState } from 'recoil'
-import { sampleAtom } from '~/recoil/sampleAtom'
+import calendarAction from '~/actions/calendarAction'
 import Calendar from '~/views/components/Calendar'
 
 const Home: React.FC = () => {
-  const [sample, setSample] = useRecoilState(sampleAtom)
-
   useEffect(() => {
-    // sampleService.sampleRecoilService()
-    // sampleService.sampleGetRecoilService()
-    setSample({ info: 'test' })
+    const schedules = calendarAction.getSchedules({ type: 'COMPANY' })
   }, [])
 
   return (
