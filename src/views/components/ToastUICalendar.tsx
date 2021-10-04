@@ -1,12 +1,14 @@
 import React, { ReactNode, useState, useRef, useEffect, ReactElement } from 'react'
 import Calendar, { IOptions, ICalendarInfo, ISchedule, TZDate } from 'tui-calendar'
 import { ViewType, MoveType, DateRange, Schedule } from '~/interfaces/calendar'
+import { useRecoilValue } from 'recoil'
+import { schedulesAtom } from '~/recoil/calendarAtom'
 import "tui-calendar/dist/tui-calendar.css";
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
 interface Props {
-  schedules?: Schedule[]
+  // schedules?: Schedule[]
   // mode?: CalendarMode
   // onChangeCalendarDateRange?: (range: DateRange) => void
   onCreateSchedule?: (schedule: Schedule) => void
@@ -15,7 +17,7 @@ interface Props {
 }
 
 const ToastUICalendar: React.FC<Props> = ({
-  schedules,
+  // schedules,
   // mode,
   // onChangeCalendarDateRange,
   onCreateSchedule,
@@ -23,6 +25,7 @@ const ToastUICalendar: React.FC<Props> = ({
   onDeleteSchedule,
 }) => {
   const calendar = useRef<Calendar>()
+  const schedules = useRecoilValue(schedulesAtom)
 
   const initialize = () => {
     const options: IOptions = {
@@ -31,28 +34,6 @@ const ToastUICalendar: React.FC<Props> = ({
       useDetailPopup: true,
     }
     calendar.current = new Calendar('#calendar', options) // tui 캘린더 객체 생성
-
-    /* sample calendar info */
-    const calendarInfo = [
-      {
-        id: '1',
-        name: 'My Calendar',
-        color: '#ffffff',
-        bgColor: '#9e5fff',
-        dragBgColor: '#9e5fff',
-        borderColor: '#9e5fff'
-      },
-      {
-        id: '2',
-        name: 'Company',
-        color: '#00a9ff',
-        bgColor: '#00a9ff',
-        dragBgColor: '#00a9ff',
-        borderColor: '#00a9ff'
-      },
-    ]
-    calendar.current?.setCalendars(calendarInfo)
-    /* sample calendar info */
 
     const beforeCreateSchedule = (scheduleData: ISchedule) => {
       // const schedule: Schedule = {
@@ -78,7 +59,7 @@ const ToastUICalendar: React.FC<Props> = ({
   }
 
   // event handler
-  const createSchedules = (schedules: any) => {
+  const createSchedules = (schedules: ISchedule[]) => {
     calendar.current?.clear()
     calendar.current?.createSchedules(schedules)
   }
@@ -105,51 +86,49 @@ const ToastUICalendar: React.FC<Props> = ({
   }
 
   const generateCalendarInfo = (schedules: Schedule[]) => {
-    // const uniqueNicknames = new Set<string>()
-    // schedules.forEach((e) => {
-    //   uniqueNicknames.add(e.nickname)
-    // })
+    const uniqueTypes = new Set<string>()
+    schedules.forEach((e) => {
+      uniqueTypes.add(e.type)
+    })
 
-    // const uniqueColorList: Partial<ICalendarInfo>[] = []
-    // uniqueNicknames.forEach((nickname) => {
-    //   const found = schedules.find((schedule) => {
-    //     return schedule.nickname === nickname
-    //   })
-    //   uniqueColorList.push({
-    //     name: found?.nickname,
-    //     bgColor: found?.color,
-    //   })
-    // })
+    const uniqueSchedules: Schedule[] = []
+    uniqueTypes.forEach((type) => {
+      const found = schedules.find((schedule) => {
+        return schedule.type === type
+      })
+      uniqueSchedules.push(found)
+    })
 
-    // const calendarInfo: ICalendarInfo[] = []
-    // uniqueColorList.forEach((schedule) => {
-    //   calendarInfo.push({
-    //     id: schedule.name,
-    //     name: schedule.name,
-    //     color: '#ffffff',
-    //     bgColor: schedule.bgColor,
-    //     dragBgColor: schedule.bgColor,
-    //     borderColor: schedule.bgColor,
-    //   })
-    // })
+    const calendarInfo: ICalendarInfo[] = []
+    uniqueSchedules.forEach((schedule) => {
+      calendarInfo.push({
+        // id: Math.floor(Math.random() * 100000).toString(),
+        id: schedule.type,
+        name: schedule.type,
+        color: '#ffffff',
+        bgColor: schedule.color,
+        dragBgColor: schedule.color,
+        borderColor: schedule.color,
+      })
+    })
 
-    // calendar.current?.setCalendars(calendarInfo)
+    calendar.current?.setCalendars(calendarInfo)
   }
 
-  const convertSchedulesToToastUISchedules = (schedules: Schedule[]) => {
+  const convertSchedulesToToastUISchedules = (schedules: Schedule[]): ISchedule[] => {
     generateCalendarInfo(schedules)
 
     const toastUISchedules: ISchedule[] = []
-    // schedules.map((schedule) => {
-    //   toastUISchedules.push({
-    //     id: schedule.scheduleId,
-    //     calendarId: schedule.nickname,
-    //     title: schedule.nickname,
-    //     category: 'time',
-    //     start: schedule.startDate,
-    //     end: schedule.endDate,
-    //   })
-    // })
+    schedules.map((schedule) => {
+      toastUISchedules.push({
+        id: schedule.id,
+        calendarId: schedule.type,
+        title: schedule.type,
+        category: 'time',
+        start: schedule.startDate,
+        end: schedule.endDate,
+      })
+    })
     return toastUISchedules
   }
 
