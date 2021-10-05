@@ -9,14 +9,10 @@ export enum MoveType {
   TODAY = 'today',
 }
 
-export interface DateRange {
-  start: string
-  end: string
-}
-
 export interface GetScheduleRequestParams {
-  range?: DateRange
   id?: string
+  startDate?: string
+  endDate?: string
   type: string
 }
 

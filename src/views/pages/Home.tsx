@@ -14,8 +14,10 @@ const Home: React.FC = () => {
   const { type } = useParams<HomeParams>()
 
   useEffect(() => {
-    const schedules = calendarAction.getSchedules({ type: type?.toUpperCase() })
-    setSchedules(schedules)
+    if (type) {
+      const schedules = calendarAction.getSchedules({ type: type?.toUpperCase() })
+      setSchedules(schedules)
+    }
   }, [type])
 
   return (

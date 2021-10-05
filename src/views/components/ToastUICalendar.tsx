@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
-import Calendar, { IOptions, ICalendarInfo, ISchedule, TZDate } from 'tui-calendar'
-import { ViewType, MoveType, DateRange, Schedule } from '~/interfaces/calendar'
+import Calendar, { IOptions, ICalendarInfo, ISchedule } from 'tui-calendar'
+import { ViewType, MoveType, Schedule } from '~/interfaces/calendar'
 import { useRecoilValue } from 'recoil'
 import { schedulesAtom } from '~/recoil/calendarAtom'
 import { Button, Stack } from '@mui/material';
