@@ -144,7 +144,7 @@ const ToastUICalendar: React.FC<Props> = () => {
         <Button variant="outlined" size="small" onClick={() => { move(MoveType.PREV) }}>이전</Button>
         <Button variant="outlined" size="small" onClick={() => { move(MoveType.NEXT) }}>다음</Button>
         <Button variant="outlined" size="small" onClick={() => { move(MoveType.TODAY) }}>오늘</Button>
-        <Button variant="outlined" size="small" onClick={() => { changeView }}>월간/주간</Button>
+        <Button variant="outlined" size="small" onClick={changeView}>월간/주간</Button>
       </Stack>
       <div id="calendar" style={{ height: '640px' }}></div>
     </>
