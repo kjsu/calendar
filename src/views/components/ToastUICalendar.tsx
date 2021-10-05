@@ -3,6 +3,7 @@ import Calendar, { IOptions, ICalendarInfo, ISchedule, TZDate } from 'tui-calend
 import { ViewType, MoveType, DateRange, Schedule } from '~/interfaces/calendar'
 import { useRecoilValue } from 'recoil'
 import { schedulesAtom } from '~/recoil/calendarAtom'
+import { Button, Stack } from '@mui/material';
 import "tui-calendar/dist/tui-calendar.css";
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
@@ -139,28 +140,12 @@ const ToastUICalendar: React.FC<Props> = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          move(MoveType.PREV)
-        }}
-      >
-        이전
-      </button>
-      <button
-        onClick={() => {
-          move(MoveType.NEXT)
-        }}
-      >
-        다음
-      </button>
-      <button
-        onClick={() => {
-          move(MoveType.TODAY)
-        }}
-      >
-        오늘
-      </button>
-      <button onClick={changeView}>월간/주간 토글</button>
+      <Stack direction="row" spacing={1} mb={1}>
+        <Button variant="outlined" size="small" onClick={() => { move(MoveType.PREV) }}>이전</Button>
+        <Button variant="outlined" size="small" onClick={() => { move(MoveType.NEXT) }}>다음</Button>
+        <Button variant="outlined" size="small" onClick={() => { move(MoveType.TODAY) }}>오늘</Button>
+        <Button variant="outlined" size="small" onClick={() => { changeView }}>월간/주간</Button>
+      </Stack>
       <div id="calendar" style={{ height: '640px' }}></div>
     </>
   )
