@@ -116,17 +116,6 @@ const ToastUICalendar: React.FC<Props> = () => {
     return toastUISchedules
   }
 
-  const convertToastUIScheduleToSchedule = (schedule: ISchedule) => {
-    // const result: Schedule = {
-    //   scheduleId: schedule.id,
-    //   range: {
-    //     start: (schedule.start as TZDate).toDate()?.toISOString(),
-    //     end: (schedule.end as TZDate).toDate()?.toISOString(),
-    //   },
-    // }
-    // return result
-  }
-
   useEffect(() => {
     initialize()
     return () => {
