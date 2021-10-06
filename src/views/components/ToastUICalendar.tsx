@@ -3,10 +3,10 @@ import Calendar, { IOptions, ICalendarInfo, ISchedule } from 'tui-calendar'
 import { ViewType, MoveType, Schedule } from '~/interfaces/calendar'
 import { useRecoilValue } from 'recoil'
 import { schedulesAtom } from '~/recoil/calendarAtom'
-import { Button, Stack } from '@mui/material';
-import "tui-calendar/dist/tui-calendar.css";
-import 'tui-date-picker/dist/tui-date-picker.css';
-import 'tui-time-picker/dist/tui-time-picker.css';
+import { Button, Stack } from '@mui/material'
+import '~/css/calendar/tui-calendar.css'
+import '~/css/calendar/tui-date-picker.css'
+import '~/css/calendar/tui-time-picker.css'
 
 interface Props {
 }
