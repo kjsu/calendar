@@ -10,7 +10,7 @@ const createSomeday = (day: number) => {
   }
 }
 
-export const dummyScheduleCompany: Schedule[] = [
+export const dummyCompanySchedules: Schedule[] = [
   {
     id: 'c001',
     type: '팀 회의',
@@ -69,7 +69,7 @@ export const dummyScheduleCompany: Schedule[] = [
   },
 ]
 
-export const dummySchedulePersonal: Schedule[] = [
+export const dummyPersonalSchedules: Schedule[] = [
   {
     id: 'p001',
     type: '스터디',
