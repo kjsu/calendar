@@ -2,12 +2,8 @@ import { Schedule } from '~/interfaces/calendar'
 
 const createSomeday = (day: number) => {
   const today = new Date()
-  if (day === 0) {
-    return today.toISOString().split('T')[0]
-  } else {
-    const someday = new Date(today.setDate(today.getDate() + day))
-    return someday.toISOString().split('T')[0]
-  }
+  const someday = new Date(today.setDate(today.getDate() + day))
+  return someday.toISOString().split('T')[0]
 }
 
 export const dummyCompanySchedules: Schedule[] = [
