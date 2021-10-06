@@ -5,6 +5,12 @@ import Router from '~/views/components/Router'
 import { RecoilRoot } from 'recoil'
 import { RecoilExternalStatePortal } from './recoil/RecoilExternalStatePortal'
 
+declare global {
+  interface Window {
+    naver: any
+  }
+}
+
 export interface AppConfig {
   ajax: object
 }
