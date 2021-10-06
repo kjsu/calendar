@@ -5,7 +5,7 @@ import { NaverOAuthInfo } from '~/utils/constant'
 
 type NaverOAuth = [ReactElement, boolean, Function, Function]
 
-function useNaverOAuth(isLoginSuccess: Function): NaverOAuth {
+function useNaverOAuth(callbackLoginSuccess: Function): NaverOAuth {
   const [isLogin, setIsLogin] = useState(false)
   const naverLogin = useRef<NaverLogin>()
 
@@ -18,7 +18,7 @@ function useNaverOAuth(isLoginSuccess: Function): NaverOAuth {
       isPopup: true,
       loginButton: {
         color: 'green',
-        height: 45,
+        height: 38,
         type: NaverLoginButtonIconType.ORIGINAL,
       },
     }
@@ -32,7 +32,7 @@ function useNaverOAuth(isLoginSuccess: Function): NaverOAuth {
   const getLoginStatusCallback = (status: boolean) => {
     setIsLogin(status)
     if (status && naverLogin.current) {
-      isLoginSuccess(naverLogin.current.user)
+      callbackLoginSuccess(naverLogin.current.user)
     }
   }
 
