@@ -14,8 +14,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { plannerItems } from './listPlannerItems';
-import Orders from './Orders';
+import { calendarItems } from './listCalendarItems';
+import ToastUICalendar from './ToastUICalendar';
 
 function Copyright(props: any) {
 	return (
@@ -114,7 +114,7 @@ function DashboardContent() {
 							noWrap
 							sx={{ flexGrow: 1 }}
 						>
-							Planner
+							Calendar
 						</Typography>
 					</Toolbar>
 				</AppBar>
@@ -132,7 +132,7 @@ function DashboardContent() {
 						</IconButton>
 					</Toolbar>
 					<Divider />
-					<List>{plannerItems}</List>
+					<List>{calendarItems}</List>
 				</Drawer>
 				<Box
 					component="main"
@@ -147,13 +147,12 @@ function DashboardContent() {
 					}}
 				>
 					<Toolbar />
-					<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+					<Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
 						<Grid container spacing={3}>
-							{/* Recent Orders */}
+							{/* Toast UI Calendar */}
 							<Grid item xs={12}>
-								{/* <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}> */}
 								<Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-									{/* <Orders /> */}
+									<ToastUICalendar />
 								</Paper>
 							</Grid>
 						</Grid>

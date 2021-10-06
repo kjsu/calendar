@@ -1,21 +1,28 @@
 import React, { useEffect } from 'react'
-import sampleService from '~/services/sampleService' /* recoil sample용 임시 코드, 실제 구현은 action 사용 */
 import { useRecoilState } from 'recoil'
-import { sampleAtom } from '~/recoil/sampleAtom'
-import Planner from '~/views/components/Planner'
+import calendarAction from '~/actions/calendarAction'
+import Calendar from '~/views/components/Calendar'
+import { schedulesAtom } from '~/recoil/calendarAtom'
+import { useParams } from 'react-router-dom'
+
+type HomeParams = {
+  type: string;
+};
 
 const Home: React.FC = () => {
-  const [sample, setSample] = useRecoilState(sampleAtom)
+  const [schedules, setSchedules] = useRecoilState(schedulesAtom)
+  const { type } = useParams<HomeParams>()
 
   useEffect(() => {
-    // sampleService.sampleRecoilService()
-    // sampleService.sampleGetRecoilService()
-    setSample({ info: 'test' })
-  }, [])
+    if (type) {
+      const schedules = calendarAction.getSchedules({ type: type?.toUpperCase() })
+      setSchedules(schedules)
+    }
+  }, [type])
 
   return (
     <>
-      <Planner></Planner>
+      <Calendar></Calendar>
     </>
   )
 }

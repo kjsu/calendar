@@ -10,6 +10,7 @@ const Router: React.FC = () => (
   <Suspense fallback={<></>}>
     <Switch>
       <Route exact path={HOME} component={Home} />
+      <Route exact path="/:type" component={Home} />
       <Route exact path={DASHBOARD} component={Dashboard} />
     </Switch>
   </Suspense>
