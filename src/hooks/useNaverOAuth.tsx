@@ -45,7 +45,7 @@ function useNaverOAuth(callbackLoginSuccess: Function): NaverOAuth {
     naverLogin.current?.logout()
     const accessToken = getHashValue(location.hash, 'access_token')
     window.open(
-      `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=fWZ2aJATS_TirUlWZHn9&client_secret=7GuWcIsJiF&access_token=${accessToken}&service_provider=NAVER`,
+      `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=KiE0I0s67NMDmxSD5owH&client_secret=pLNQTmzenz&access_token=${accessToken}&service_provider=NAVER`,
       'erase',
     )
     location.replace(replaceUrl)
