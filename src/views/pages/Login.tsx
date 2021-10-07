@@ -18,8 +18,8 @@ const Login: React.FC = () => {
       {isLogin || NaverLoginElement}
       {isLogin && (
         <Stack direction="row" spacing={1} mb={1}>
-          <Button variant="outlined" size="small" onClick={(e) => logout('http://localhost.com:3030/login')}>로그아웃</Button>
-          <Button variant="outlined" size="small" onClick={(e) => erase('http://localhost.com:3030/login')}>탈퇴</Button>
+          <Button variant="outlined" size="small" onClick={(e) => logout('http://localhost:3030/login')}>로그아웃</Button>
+          <Button variant="outlined" size="small" onClick={(e) => erase('http://localhost:3030/login')}>탈퇴</Button>
         </Stack>
       )}
     </>

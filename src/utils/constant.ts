@@ -2,6 +2,6 @@
 
 export enum NaverOAuthInfo {
 	CLIENT_ID = 'KiE0I0s67NMDmxSD5owH',
-	CALLBACK_URL = 'http://localhost.com:3030/login/naver',
-	REDIRECT_URL = 'http://localhost.com:3030/login',
+	CALLBACK_URL = 'http://localhost:3030/login/naver',
+	REDIRECT_URL = 'http://localhost:3030/login',
 }
