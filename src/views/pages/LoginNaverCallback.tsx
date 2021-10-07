@@ -22,10 +22,10 @@ const LoginNaverCallback: React.FC = () => {
 
   const getLoginStatusCallback = (status: boolean) => {
     if (status && naverLogin.current) {
-      const { id, name, email, mobile } = naverLogin.current.user
+      const { nickname } = naverLogin.current.user
 
       // 필수 제공 동의 조건
-      if (name === undefined || email === undefined || mobile === undefined) {
+      if (nickname === undefined) {
         alert('필수 제공 항목을 모두 동의해주세요.')
         naverLogin.current.reprompt()
         return
