@@ -59,3 +59,7 @@ export interface NaverLogin {
   setLoginButton: Function
   setOauthCallbackUrl: Function
 }
+
+export interface RequestLoginInfo {
+  accessToken: string
+}
