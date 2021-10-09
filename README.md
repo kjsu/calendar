@@ -1,1 +1,16 @@
-# planner
+# calendar
+### 프로젝트 설명
+- [Toast UI Calendar](https://ui.toast.com/tui-calendar)를 사용해서 기본 캘린더 화면을 구현
+- 캘린더에서 일정 추가, 수정, 삭제 기능 구현
+---
+### 프로젝트 목적
+- `React`, `TypeScript`, `recoil`, `webpack-dev-server`가 적용된 개발환경 구성
+- Atomic Design과 Action/Service 디자인 패턴 활용
+- `Material UI`의 Template 활용
+---
+### 기술 스택
+- React 17, Recoil 0.4, React-Router, TypeScript 4, tui-calendar, Material UI 5
+- Webpack, Babel, Axios, Sass
+---
+### 세부 내용
+- Wiki로 이동
