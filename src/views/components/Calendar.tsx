@@ -1,21 +1,14 @@
-import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { calendarItems } from './listCalendarItems';
-import ToastUICalendar from './ToastUICalendar';
+import * as React from 'react'
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles'
+import { CssBaseline, Box, Toolbar, List, Typography, Divider, IconButton, Container, Grid, Paper, Button, Stack } from '@mui/material'
+import MuiDrawer from '@mui/material/Drawer'
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
+import MenuIcon from '@mui/icons-material/Menu'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import { calendarItems } from './listCalendarItems'
+import ToastUICalendar from './ToastUICalendar'
+// import useNaverOAuth from '~/hooks/useNaverOAuth'
+// import { NaverUserInfo } from '~/interfaces/login'
 
 function Copyright(props: any) {
 	return (
@@ -85,6 +78,11 @@ function DashboardContent() {
 		setOpen(!open);
 	};
 
+	// const callbackLoginSuccess = (naverUserInfo: NaverUserInfo) => {
+	// 	// action
+	// }
+	// const [NaverLoginElement, isLogin, logout, erase] = useNaverOAuth(callbackLoginSuccess)
+
 	return (
 		<ThemeProvider theme={mdTheme}>
 			<Box sx={{ display: 'flex' }}>
@@ -127,6 +125,15 @@ function DashboardContent() {
 							px: [1],
 						}}
 					>
+						{/* <Box sx={{ mt: 1 }}>
+							{isLogin || NaverLoginElement}
+							{true && (
+								<Stack direction="row" spacing={1} mb={1}>
+									<Button variant="outlined" size="small" onClick={(e) => logout('http://localhost.com:3030')}>로그아웃</Button>
+									<Button variant="outlined" size="small" onClick={(e) => erase('http://localhost.com:3030')}>탈퇴</Button>
+								</Stack>
+							)}
+						</Box> */}
 						<IconButton onClick={toggleDrawer}>
 							<ChevronLeftIcon />
 						</IconButton>
