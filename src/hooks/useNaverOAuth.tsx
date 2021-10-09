@@ -1,12 +1,14 @@
-import React, { useState, useRef, ReactElement } from 'react'
+import React, { useRef, ReactElement } from 'react'
 import useScript from '~/hooks/useScript'
 import { NaverLogin, NaverLoginRequest, NaverLoginButtonIconType } from '~/interfaces/login'
 import { NaverOAuthInfo } from '~/utils/constant'
+import { useRecoilState } from 'recoil'
+import { isLoginAtom } from '~/recoil/memberAtom'
 
-type NaverOAuth = [ReactElement, boolean, Function, Function]
+type NaverOAuth = [ReactElement, Function, Function, Function]
 
 function useNaverOAuth(callbackLoginSuccess: Function): NaverOAuth {
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom)
   const naverLogin = useRef<NaverLogin>()
 
   const callback = () => {
@@ -30,25 +32,21 @@ function useNaverOAuth(callbackLoginSuccess: Function): NaverOAuth {
   useScript('https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js', 'naverSdk', callback)
 
   const getLoginStatusCallback = (status: boolean) => {
+    alert(status)
     setIsLogin(status)
     if (status && naverLogin.current) {
       callbackLoginSuccess(naverLogin.current.user)
     }
   }
 
-  const logout = (replaceUrl: string) => {
+  const logout = (url: string) => {
     naverLogin.current?.logout()
-    location.replace(replaceUrl)
+    // naverLogin.current?.getLoginStatus(getLoginStatusCallback) // 동작 안 함
+    location.replace(url)
   }
 
-  const erase = (replaceUrl: string) => {
-    naverLogin.current?.logout()
-    const accessToken = getHashValue(location.hash, 'access_token')
-    window.open(
-      `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=KiE0I0s67NMDmxSD5owH&client_secret=pLNQTmzenz&access_token=${accessToken}&service_provider=NAVER`,
-      'erase',
-    )
-    location.replace(replaceUrl)
+  const getAccessToken = () => { // 잘못된 코드, 결국 현재 url의 hash를 참조함
+    return getHashValue(location.hash, 'access_token')
   }
 
   const getHashValue = (hash: string, param: string): string => {
@@ -60,7 +58,11 @@ function useNaverOAuth(callbackLoginSuccess: Function): NaverOAuth {
     return result[param]
   }
 
-  return [<div id="naverIdLogin"></div>, isLogin, logout, erase]
+  const getLoginStatus = () => {
+    naverLogin.current?.getLoginStatus(getLoginStatusCallback) // 동작 안 함
+  }
+
+  return [<div id="naverIdLogin"></div>, logout, getAccessToken, getLoginStatus]
 }
 
 export default useNaverOAuth

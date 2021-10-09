@@ -20,6 +20,7 @@ const LoginNaverCallback: React.FC = () => {
 
   useScript('https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js', 'naverSdk', callback)
 
+  /* 해당 함수가 opener의 리액트 라이프 사이클을 조작하는 방안이 필요 */
   const getLoginStatusCallback = (status: boolean) => {
     if (status && naverLogin.current) {
       const { nickname } = naverLogin.current.user
